@@ -20,6 +20,12 @@ return [
         "onesignal" => [
             "app_id" => env("ONESIGNAL_APP_ID"),
             "authorization" => env("ONESIGNAL_AUTHORIZATION"),
+        ],
+        "chabok" => [
+            "uri_dev" => env('CHABOK_URI_DEV'),
+            "uri" => env('CHABOK_URI'),
+            "app_id" => env('CHABOK_APP_ID'),
+            "access_token" => env('CHABOK_ACCESS_TOKEN')
         ]
 
     ],

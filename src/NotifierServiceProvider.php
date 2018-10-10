@@ -15,7 +15,7 @@ class NotifierServiceProvider extends ServiceProvider
     {
         $current_dir = __DIR__;
 
-        include $current_dir . "/routes/web.php";
+        include_once $current_dir . "/routes/web.php";
 
         $this->publishes([
             $current_dir . "/config/notifier.php" => config_path("notifier.php")
@@ -31,6 +31,6 @@ class NotifierServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        include __DIR__ . "/Notifier.php";
+        include_once __DIR__ . "/Notifier.php";
     }
 }

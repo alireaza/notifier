@@ -11,23 +11,29 @@ use Asanbar\Notifier\Models\Sms;
 
 class Notifier
 {
+    private static $expire_at = 0;
+
     public static function sendPush(string $heading, string $content, array $player_ids, array $extra = null)
     {
-        dispatch(new SendPushJob($heading, $content, $player_ids, $extra));
+        dispatch(new SendPushJob($heading, $content, $player_ids, $extra, static::$expire_at));
 
         return true;
     }
 
     public static function sendSms(string $message, array $numbers)
     {
-        dispatch(new SendSmsJob($message, $numbers));
+        dispatch(new SendSmsJob($message, $numbers, static::$expire_at));
 
         return true;
     }
 
     public static function sendMessage(string $title, string $body, array $user_ids)
     {
-        dispatch(new SendMessageJob($title, $body, $user_ids));
+        dispatch(new SendMessageJob($title, $body, $user_ids, static::$expire_at));
+    }
+
+    public static function setExpireAt($expire_at) {
+        static::$expire_at = $expire_at;
     }
 
     public static function getPushes($player_ids, string $from_datetime = null, string $to_datetime = null,

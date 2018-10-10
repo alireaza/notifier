@@ -12,6 +12,10 @@ trait PushTrait
 
     public function sendPush()
     {
+        if (empty(env("PUSH_PROVIDERS_PRIORITY")) || !env("PUSH_PROVIDERS_PRIORITY")) {
+            return false;
+        }
+
         $push_providers_priority = explode(",", env("PUSH_PROVIDERS_PRIORITY"));
 
         if(!$push_providers_priority) {
